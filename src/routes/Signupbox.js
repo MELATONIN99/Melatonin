@@ -31,17 +31,36 @@ export default function SignupBox() {
             })
             .catch((error) => {
                 const errorCode = error.code;
-                const errorMessage = error.message;
+                const errorMessage = getErrorMessage(errorCode);
                 setTimeout(() => {
-                    alert("오류",{errorMessage});
+                    alert(`오류:${errorMessage}`);
                   }, 1000);
             });
-    }
+            function getErrorMessage(errorCode) {
+                switch (errorCode) {
+                  case "auth/user-not-found":
+                  case "auth/wrong-password":
+                    return "이메일 혹은 비밀번호가 일치하지 않습니다.";
+                  case "auth/email-already-in-use":
+                    return "이미 사용 중인 이메일입니다.";
+                  case "auth/weak-password":
+                    return "비밀번호는 6글자 이상이어야 합니다.";
+                  case "auth/network-request-failed":
+                    return "네트워크 연결에 실패 하였습니다.";
+                  case "auth/invalid-email":
+                    return "잘못된 이메일 형식입니다.";
+                  case "auth/internal-error":
+                    return "잘못된 요청입니다.";
+                  default:
+                    return "로그인에 실패 하였습니다.";
+                };
+       };
+    };
     
     return (
 <div className="login-wrapper">
     <h1>Melatonin.</h1>
-    <h2>Login</h2>
+    <h2>Signup</h2>
         <form id="login-form">
             <input type="text" name="userDisplayName" placeholder="Name"id="displayName"/>
             <input type="text" name="userName" placeholder="Email" id="email"/>
