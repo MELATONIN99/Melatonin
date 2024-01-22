@@ -65,7 +65,7 @@ export default function SignupBox() {
             <input type="text" name="userDisplayName" placeholder="Name"id="displayName"/>
             <input type="text" name="userName" placeholder="Email" id="email"/>
             <input type="password" name="userPassword" placeholder="Password" id="password"/>
-            <button onClick={onClcik} id="signupbtn">Sign Up</button>
+            <button onClick={onClcik} className="lobbybtn" id="signupbtn">Sign Up</button>
             <div className="link-to-account">Already have an account?
             <br/><Link to="/login">Sign in</Link></div>
         </form>

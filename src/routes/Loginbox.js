@@ -44,7 +44,7 @@ export default function LoginBox() {
         <form id="login-form">
             <input type="text" name="userName" placeholder="Email" id="email"/>
             <input type="password" name="userPassword" placeholder="Password" id="password"/>
-            <button type="submit" value="Login" onClick={onClcik}>Login</button>
+            <button type="submit" value="Login" className="lobbybtn" onClick={onClcik}>Login</button>
             <div className="link-to-account">Don't have an account?
             <br/><Link to="/signup">Sing Up</Link></div>
         </form>
