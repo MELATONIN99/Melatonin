@@ -17,7 +17,10 @@ body{
     background-color: #F1F1F6;
 };
 
-
+a:link { color:black; }
+a:visited { color:black; }
+a:hover { color:#BE9FE1; }
+a:active { color:#E1CCEC; }
 .login-wrapper{
     height: 350px;
     padding: 40px;
