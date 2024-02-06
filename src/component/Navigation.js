@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { MainLogo, Menu, Nav } from './componentstyle'
+import { MainLogo, Menu, Nav } from './componentstyle'  
 
 
 const logoimg = "MELATONINLOGO.png";
@@ -18,7 +18,11 @@ export default function Navigation() {
       <Menu>
         <Link className="nav-link" to="/">Home</Link>
         </Menu>
-
+      
+      <Menu>
+        <Link className="nav-link" to="/momentum">Momentum</Link>
+        </Menu>
+  
       <Menu>
         <Link className="nav-link" to="/profile">Profile</Link>
         </Menu>

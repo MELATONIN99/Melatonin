@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import Logout from '../component/logout.js';
 import { auth } from "../firebase/firebase.js";
 import { Link, useNavigate } from "react-router-dom";
+import "../App.css";
 
 
 export default function LoginBox() {

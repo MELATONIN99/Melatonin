@@ -5,7 +5,6 @@ export const Nav = styled.nav`
 display: flex;
 flex-direction: row;
 align-items: center;
-gap:20px;
 `;
 export const MainLogo = styled.div`
 display: flex;
@@ -17,7 +16,11 @@ display: flex;
   }
 `;
 export const Menu = styled.div`
+text-align: center;
 margin: 20px;
+font-size: 20px;
+font-weight: bold;
+width: 100px;
 `;
 export const MenuItem = styled.div`
 
