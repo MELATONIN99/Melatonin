@@ -7,7 +7,7 @@ const RandombackContainer = styled.div`
 `;
 
 const RandombackImage = styled.img`
-    z-index: -1;
+    z-index: -99;
 `
 
 export default function Background() {
