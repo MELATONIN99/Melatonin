@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Background from "../component/background"
 import { auth } from "../firebase/firebase";
 import Clock from "../component/clock";
+import Todo from "../component/todo";
 
 
 
@@ -48,6 +49,7 @@ if ( user !== null) {
             <Clock/>
         </ClockWrapper>
        <Greeting>Hello {displayName}</Greeting>
+       <Todo/>
        </Overlay>
     </div>
     )
