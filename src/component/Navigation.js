@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { MainLogo, Menu, Nav } from './componentstyle'  
+import { MainLogo, Menu, Nav } from './ComponentStyle'  
 
 
 const logoimg = "MELATONINLOGO.png";

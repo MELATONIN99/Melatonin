@@ -1,4 +1,4 @@
-import Navigation from "../component/navigation";
+import Navigation from "../component/Navigation";
 
 export default function HomeBox() {
 

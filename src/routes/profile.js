@@ -1,5 +1,5 @@
 import { getAuth } from "firebase/auth";
-import Navigation from "../component/navigation";
+import Navigation from "../component/Navigation";
 import { useNavigate } from "react-router-dom";
 
 export default function Profile() {

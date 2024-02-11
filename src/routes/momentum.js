@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Background from "../component/background"
+import Background from "../component/Background"
 import { auth } from "../firebase/firebase";
-import Clock from "../component/clock";
-import Todo from "../component/todo";
+import Clock from "../component/Clock";
+import Todo from "../component/Todo";
 
 
 

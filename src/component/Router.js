@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import HomeBox from "../routes/homebox"
-import LoginBox from "../routes/loginbox";
-import SignupBox from "../routes/signupbox";
-import Profile from "../routes/profile";
-import Momentum from "../routes/momentum";
+import HomeBox from "../routes/HomeBox"
+import LoginBox from "../routes/LoginBox";
+import SignupBox from "../routes/SignupBox";
+import Profile from "../routes/Profile";
+import Momentum from "../routes/Momentum";
 
 const Router = () => {
     return (

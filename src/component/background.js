@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Navigation from "./navigation";
+import Navigation from "./Navigation";
 
 
 const RandombackContainer = styled.div`
