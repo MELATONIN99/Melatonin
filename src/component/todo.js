@@ -76,7 +76,8 @@ const Todo = () => {
         />
         <button type="submit" >📝</button>
       </Form>
-      <TodoList userId={userId} todoList={todoList} />
+      <TodoList fetchData = {fetchData} userId={userId} todoList={todoList}></TodoList>
+      
     </div>
   );
 };

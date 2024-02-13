@@ -17,9 +17,8 @@ if (user !== null) {
   
 }
 else {
-    alert("사용자 정보 없음");
     setTimeout(() => {
-        navigate("/login");
+        navigate("/");
       }, 0);
 }
 function Userinfo() {

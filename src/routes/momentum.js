@@ -3,7 +3,8 @@ import Background from "../component/Background"
 import { auth } from "../firebase/firebase";
 import Clock from "../component/Clock";
 import Todo from "../component/Todo";
-
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 
 const Overlay = styled.div`
@@ -32,15 +33,20 @@ const Greeting = styled.div`
     font-weight: bold;
 `;
 
-
 export default function Momentum() {
-    
-
+    const navigate = useNavigate();
     const user = auth.currentUser;
-    let displayName;
-if ( user !== null) {
-    displayName = user.displayName;
-}
+    const [displayName, SetDisplayName] = useState("");
+    useEffect(() => {
+    if ( user == null) {
+        setTimeout(() => {
+        navigate("/");
+    }, 0);
+    }
+    else if ( user !== null ) {
+        SetDisplayName(user.displayName);
+    }
+},[]);
     return(
     <div>
        <Background/>
@@ -52,6 +58,6 @@ if ( user !== null) {
        <Todo/>
        </Overlay>
     </div>
+        
     )
-
-}
+};
