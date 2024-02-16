@@ -1,4 +1,4 @@
-import { deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 import styled from "styled-components";
 import { db } from "../firebase/firebase";
@@ -27,7 +27,10 @@ const TodoList = (props) => {
   const todoList = props.todoList;
   const fetchData = props.fetchData;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
+  const [todoState, setTodo] = useState("");
+
   
   const handleConfirm = async(itemId) => {
     try {
@@ -36,7 +39,6 @@ const TodoList = (props) => {
     catch(e){
       console.log(e);
     }
-
     setIsModalOpen(false);
     fetchData();
   };
@@ -51,17 +53,80 @@ const TodoList = (props) => {
     setIsModalOpen(true);
   };
 
+
+
+  const editBtn = (itemId) => {
+    setSelectedItemId(itemId);
+    const selectedItem = todoList.find((item) => item.id === itemId);
+    setTodo(selectedItem.todo);
+    setEditModalOpen(true);
+  };
+
+
+  const editHandleCancel = () => {
+    setEditModalOpen(false);
+  };
+
+
+  const onEditChange = (e) => {
+    setTodo(e.target.value);  
+  };
+
+
+  const handleEdit = async(e) => {
+    try{
+    const toDoDocRef = doc(db, "todo", selectedItemId);
+    const data = {
+      todo:todoState,
+    }
+    await updateDoc(toDoDocRef, data);
+    setTodo("");
+    await fetchData();
+    setEditModalOpen(false);
+  } catch (error) {
+    console.error("error:handleEdit", error)
+  }};
+
+
   return (
     <div>
-      {todoList.map((item) => (
+      {todoList.map((item, index) => (
         <div key={item.id}>
           {item.todo}
-          <button>편집</button>
+          <button key={index.id} onClick={() => editBtn(item.id)}>수정</button>
           <button key={item.id} onClick={() => deleteBtn(item.id)}>
             삭제
           </button>
         </div>
       ))}
+
+      {editModalOpen && (
+      <ModalBackground>
+        <ModalContainer>
+          <div>
+            {todoList.map((item) => (
+              selectedItemId === item.id && (
+                <div key={item.id}>
+                  <input 
+                  required
+                  value={todoState}
+                  maxLength={20}
+                  onChange={onEditChange}
+                  
+                  >
+                </input>
+                </div>
+                
+              )
+            ))}
+            <button onClick={handleEdit}>확인</button>
+            <button onClick={editHandleCancel}>취소</button>
+          </div>
+        </ModalContainer>
+      </ModalBackground>
+    )}
+
+
 
       {isModalOpen && (
         <ModalBackground>
