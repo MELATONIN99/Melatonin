@@ -2,7 +2,17 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase.js";
 import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
-
+import styled from "styled-components";
+const LogoimgWrapper = styled.div`
+display: flex;
+  align-items: center;
+  img {
+    width: 200px;
+    height: auto;
+  }
+  margin-bottom: 20px;
+`
+const logoimg = "MELATONINLOGO.png";
 
 export default function LoginBox() {
   const navigate = useNavigate();
@@ -39,7 +49,9 @@ export default function LoginBox() {
 
     return (
 <div className="login-wrapper">
-  <h1>Melatonin.</h1>
+<LogoimgWrapper>
+  <img src={logoimg} alt="logo" />
+  </LogoimgWrapper>
   <h2>Login</h2>
         <form id="login-form">
             <input type="text" name="userName" placeholder="Email" id="email"/>
@@ -49,7 +61,6 @@ export default function LoginBox() {
             <br/><Link to="/signup">Sing Up</Link></div>
         </form>
 </div>
-  
 );  
 };
 

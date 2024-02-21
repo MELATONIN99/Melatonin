@@ -7,6 +7,14 @@
 #C9B6E4
 #E1CCEC
 #F1F1F6
+    백그라운드 색상
+    #2B2B2B
+    #343434
+    #3c3c3c
+    #454545
+    흰색
+    #dedede
+
 */
 
 body{
@@ -14,19 +22,33 @@ body{
     border: none;
     text-decoration-line: none;
     font-size: 18px;
-    background-color: #F1F1F6;
+    background-color: #2B2B2B;
+    color: #dedede;
 };
 
-a:link { color:black; }
-a:visited { color:black; }
+a:link { color: #dedede; }
+a:visited { color: #dedede; }
 a:hover { color:#BE9FE1; }
 a:active { color:#E1CCEC; }
+input:-webkit-autofill {
+    background-color: #343434;
+   -webkit-box-shadow: 0 0 0 1000px #343434 inset;
+   -webkit-text-fill-color: #dedede;
+}
+
 .login-wrapper{
-    height: 350px;
-    padding: 40px;
+    display:flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vh;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top:0px;
     box-sizing: border-box;
-    width: 400px;
     margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
 }
 
 #login-form{
@@ -36,7 +58,7 @@ a:active { color:#E1CCEC; }
     padding: 30px;
     outline-style: solid;
     outline-width: medium;
-    outline-color: #E1CCEC;
+    outline-color: #BE9FE1;
     border-radius: 10px;
 }
 
@@ -51,7 +73,7 @@ a:active { color:#E1CCEC; }
 }
 .login-wrapper > h2{
     font-size: 24px;
-    color: #E1CCEC;
+    color: #BE9FE1;
     margin-bottom: 20px;
 }
 #login-form > input{
@@ -61,16 +83,17 @@ a:active { color:#E1CCEC; }
     box-sizing: border-box;
     margin-bottom: 16px;
     border-radius: 6px;
-    background-color: #e8e8e8;
+    background-color: #343434;
     border: 0px;
+    color: #dedede;
 }
 #login-form > input::placeholder{
-    color: #9d8ea4b1;
+    color: #9d8ea4d0;
 }
 #login-form > input[type="submit"]{
-    color: #F1F1F6;
+    color: #343434;
     font-size: 16px;
-    background-color: #BE9FE1;
+    background-color: #6a32aa;
     margin-top: 20px;
     border: 0px;
 }
@@ -84,8 +107,9 @@ a:active { color:#E1CCEC; }
 }
 
 .lobbybtn {
+    background-color: #2b2b2b;
     color: #BE9FE1;
-    outline-color: #E1CCEC;
+    outline-color: #BE9FE1;
     outline-style: solid;
     outline-width: medium;
     border-radius: 10px;

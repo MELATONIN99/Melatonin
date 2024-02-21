@@ -3,6 +3,32 @@ import { useState } from "react";
 import styled from "styled-components";
 import { db } from "../firebase/firebase";
 
+export const TodoListWrapper = styled.div`
+display: flex;
+flex-direction: column;
+position: static;
+width: 300px;
+height: 300px;
+justify-content: center;
+align-items: center;
+text-align: center;
+overflow-y: auto;
+
+    border-bottom: 3px solid white;
+    height: auto;
+    max-height: 300px;
+    text-align: center;
+    font-size: 16px;
+    background-color: rgba(66, 66, 66, 0.779);
+`
+const Todos = styled.div`
+display: flex;
+margin-right: auto;
+`
+const TodosWrapper = styled.div`
+display: flex;
+`
+
 export const ModalBackground = styled.div`
   width: 100%;
   height: 100%;
@@ -13,6 +39,7 @@ export const ModalBackground = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  
 `;
 
 export const ModalContainer = styled.div`
@@ -22,6 +49,17 @@ export const ModalContainer = styled.div`
   padding: 20px;
   border-radius: 8px;
 `;
+
+export const ForTodoBtn = styled.button`
+  width: 30px;
+  height: 30px;
+  border: 0px;
+  font-size:16px;
+  background: rgba(255, 255, 255, 0.652);
+  color: rgb(0, 0, 0);
+  margin-left: auto;
+  
+`
 
 const TodoList = (props) => {
   const todoList = props.todoList;
@@ -89,15 +127,15 @@ const TodoList = (props) => {
 
 
   return (
-    <div>
+    <TodoListWrapper >
       {todoList.map((item, index) => (
-        <div key={item.id}>
+        <TodosWrapper key={item.id}>
+        <Todos>
           {item.todo}
-          <button key={index.id} onClick={() => editBtn(item.id)}>수정</button>
-          <button key={item.id} onClick={() => deleteBtn(item.id)}>
-            삭제
-          </button>
-        </div>
+          </Todos>
+          <ForTodoBtn onClick={() => editBtn(item.id)}>📝</ForTodoBtn>
+          <ForTodoBtn onClick={() => deleteBtn(item.id)}>🗙</ForTodoBtn>
+          </TodosWrapper>
       ))}
 
       {editModalOpen && (
@@ -112,7 +150,6 @@ const TodoList = (props) => {
                   value={todoState}
                   maxLength={20}
                   onChange={onEditChange}
-                  
                   >
                 </input>
                 </div>
@@ -125,9 +162,6 @@ const TodoList = (props) => {
         </ModalContainer>
       </ModalBackground>
     )}
-
-
-
       {isModalOpen && (
         <ModalBackground>
           <ModalContainer>
@@ -137,7 +171,7 @@ const TodoList = (props) => {
           </ModalContainer>
         </ModalBackground>
       )}
-    </div>
+    </TodoListWrapper>
   );
 };
 

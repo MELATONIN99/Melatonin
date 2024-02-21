@@ -1,9 +1,17 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import { Link, useNavigate } from "react-router-dom";
-
-
-
+import styled from "styled-components";
+const LogoimgWrapper = styled.div`
+display: flex;
+  align-items: center;
+  img {
+    width: 200px;
+    height: auto;
+  }
+  margin-bottom: 20px;
+`
+const logoimg = "MELATONINLOGO.png";
 
 
 
@@ -59,7 +67,9 @@ export default function SignupBox() {
     
     return (
 <div className="login-wrapper">
-    <h1>Melatonin.</h1>
+  <LogoimgWrapper>
+  <img src={logoimg} alt="logo" />
+  </LogoimgWrapper>
     <h2>Signup</h2>
         <form id="login-form">
             <input type="text" name="userDisplayName" placeholder="Name"id="displayName"/>

@@ -2,15 +2,51 @@ import { useState, useEffect } from "react";
 import { auth, db } from "../firebase/firebase";
 import { addDoc, collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import styled from "styled-components";
-import TodoList from "./TodoList";
+import TodoList, { ForTodoBtn } from "./TodoList";
+
+
+const TodoWrapper = styled.div`
+align-items: center;
+
+`
+const TodoInput = styled.input`
+font-size: 20px;
+align-items: center;
+width: 100%;
+height:80%;
+background-color:transparent;
+border: 0px;
+padding-left:10px;
+color: white;
+
+&:focus{
+  outline: solid;
+  outline-width: thin;
+  outline-color: white;
+}
+
+&::placeholder{
+  color: white;
+}
+
+
+`
 
 const Form = styled.form`
   display: flex;
-  position: static;
   flex-direction: row;
   gap: 10px;
-  max-width: 200px;
-  width: 60%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+    border: 0px;
+    outline: none;
+    text-align: center;
+    border-bottom: 3px solid white;
+    background: none;
+    color: white;
+    font-family: 'Noto Sans KR', sans-serif;
 `;
 
 const Todo = () => {
@@ -66,19 +102,21 @@ const Todo = () => {
 
   return (
     <div>
+    <TodoWrapper>
       <Form onSubmit={onWriteTodo}>
-        <input
+        <TodoInput
           type="text"
           required
           value={todo}
           onChange={handleTodoChange}
           placeholder="Write Todo!"
         />
-        <button type="submit" >📝</button>
+        
+        <ForTodoBtn type="submit" >📝</ForTodoBtn>
       </Form>
+      </TodoWrapper>
       <TodoList fetchData = {fetchData} userId={userId} todoList={todoList}></TodoList>
-      
-    </div>
+      </div>
   );
 };
 

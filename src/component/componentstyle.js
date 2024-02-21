@@ -5,6 +5,8 @@ export const Nav = styled.nav`
 display: flex;
 flex-direction: row;
 align-items: center;
+padding-left: 10px;
+padding-top: 10px;
 `;
 export const MainLogo = styled.div`
 display: flex;
