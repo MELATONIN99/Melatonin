@@ -31,4 +31,3 @@ app.get('/art/:text', function (req, res) {
 app.listen(port, () => {
   console.log(`Example app listeng on port ${port}`)
 })
-

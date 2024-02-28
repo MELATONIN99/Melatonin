@@ -7,26 +7,37 @@ export const TodoListWrapper = styled.div`
 display: flex;
 flex-direction: column;
 position: static;
-width: 300px;
-height: 300px;
-justify-content: center;
+width: auto;
+max-height: 250px;
 align-items: center;
 text-align: center;
 overflow-y: auto;
+border-bottom: 3px solid white;
+max-height: 250px;
+font-size: 16px;
+background-color: rgba(69, 69, 69, 0.6);
 
-    border-bottom: 3px solid white;
-    height: auto;
-    max-height: 300px;
-    text-align: center;
-    font-size: 16px;
-    background-color: rgba(66, 66, 66, 0.779);
+&::-webkit-scrollbar {
+    width: 5px;
+  };
+
+&::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 1);
+    border-radius: 5px;
+  };
 `
+
 const Todos = styled.div`
-display: flex;
-margin-right: auto;
+padding-left: 10px;
 `
 const TodosWrapper = styled.div`
 display: flex;
+width: 100%;
+justify-content: space-between;
+align-items: center;
+text-align: center;
+align-content: center;
+
 `
 
 export const ModalBackground = styled.div`
@@ -51,14 +62,23 @@ export const ModalContainer = styled.div`
 `;
 
 export const ForTodoBtn = styled.button`
-  width: 30px;
-  height: 30px;
   border: 0px;
   font-size:16px;
-  background: rgba(255, 255, 255, 0.652);
-  color: rgb(0, 0, 0);
-  margin-left: auto;
+  background: rgba(69, 69, 69, 0.5);
+  color: #dedede;
+  width: 30px;
+  height: 30px;
   
+`
+export const TodoBtnWrapper = styled.div`
+display: flex;
+flex-direction: row;
+width: auto;
+height: auto;
+`
+const BtnImg = styled.div`
+width: 20px;
+height: 20px;
 `
 
 const TodoList = (props) => {
@@ -128,13 +148,28 @@ const TodoList = (props) => {
 
   return (
     <TodoListWrapper >
-      {todoList.map((item, index) => (
+      {todoList.map((item) => (
         <TodosWrapper key={item.id}>
         <Todos>
           {item.todo}
           </Todos>
-          <ForTodoBtn onClick={() => editBtn(item.id)}>📝</ForTodoBtn>
-          <ForTodoBtn onClick={() => deleteBtn(item.id)}>🗙</ForTodoBtn>
+          <TodoBtnWrapper>
+          <ForTodoBtn onClick={() => editBtn(item.id)}>
+            <BtnImg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+</svg>
+</BtnImg>
+
+          </ForTodoBtn>
+          <ForTodoBtn onClick={() => deleteBtn(item.id)}>
+            <BtnImg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+</svg>
+</BtnImg>
+          </ForTodoBtn>
+          </TodoBtnWrapper>
           </TodosWrapper>
       ))}
 
