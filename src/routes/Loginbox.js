@@ -23,13 +23,8 @@ export default function LoginBox() {
   const password = document.getElementById('password').value
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-    // Signed in 
     const user = userCredential.user;
-    console.log(user);
-    alert("로그인 완료 홈페이지로 이동");
-    setTimeout(() => {
-      navigate("/");
-    }, 1000);
+    navigate("/");
   })
     .catch((error) => {
       const errorCode = error.code;

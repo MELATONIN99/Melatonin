@@ -39,22 +39,30 @@ align-items: center;
 text-align: center;
 width: 40%;
 top:400px;
-`
+`;
 
 export default function Momentum() {
     const navigate = useNavigate();
+    const [displayName, setDisplayName] = useState("");
     const user = auth.currentUser;
-    const [displayName, SetDisplayName] = useState("");
     useEffect(() => {
-    if ( user == null) {
-        setTimeout(() => {
-        navigate("/");
-    }, 0);
+        const fetchData = async () => {
+    try {
+        if( user == null ){
+            console.log(user)
+    }   else if ( user !== null ) {
+          setDisplayName(user.displayName);
+        }
+    
+} catch (error) {
+    console.error("Error fetching data:", error);
+    } finally {
+        
     }
-    else if ( user !== null ) {
-        SetDisplayName(user.displayName);
-    }
-},[]);
+};
+
+fetchData();
+},[displayName, navigate, user]);
     return(
     <div>
        <Background/>

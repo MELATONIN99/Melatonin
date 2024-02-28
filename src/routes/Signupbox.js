@@ -31,11 +31,8 @@ export default function SignupBox() {
                 updateProfile(auth.currentUser, {
                     displayName:displayName,
                 })
-                console.log(user);
-                alert("회원가입 완료 로그인으로 이동");
-                setTimeout(() => {
+                    alert("가입완료");
                     navigate("/login");
-                  }, 1000);
             })
             .catch((error) => {
                 const errorCode = error.code;
