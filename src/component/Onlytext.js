@@ -1,43 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { auth } from "../firebase/firebase";
+import { useNavigate } from "react-router-dom";
 
 
 export default function OnlyText() {
-    const [art, setArt] = useState("");
-    // const onChange = (event) => setArt(event.target.value);
-    const onSubmit = (event) => {
-      event.preventDefault();
-      if(art ===""){
-        return;
-      }
-      setArt("");
-    };
-  
-    const onClick = () => {
-      const text = document.getElementById('art').value
-        fetch(`http://localhost:8080/art/${text}`)
-        .then((response) => response.text())
-        .then((data) => {
-          console.log(data);
-          document.getElementById('outtext').innerHTML = data;
-        });
-  
+    const [displayName, SetDisplayName] = useState("");
+    const navigate = useNavigate();
+    const user = auth.currentUser;
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          if (user == null) {
+              navigate("/login");
+          } else if (user !== null) {
+            SetDisplayName(user.displayName);
+            if (displayName !== null) {
+              const text = displayName;
+              const response = await fetch(`http://localhost:8080/art/${text}`);
+              const data = await response.text();
+              console.log(data);
+              document.getElementById('outUserName').innerHTML = data;
+            }
+          }
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
       };
   
-    console.log(art);
+      fetchData();
+    }, [displayName, navigate, user]);
     return (
       <div>
-      <form onSubmit={onSubmit}>
-      <input
-      id="art"
-      // onChange={onChange}
-      // value={art}
-      text="text"
-      placeholder="Wirte something!"
-      ></input>
-      <button onClick={onClick}>입력</button>
-      </form>
-      <p id="outtext">
-      </p>
+        <div 
+        id="userName"
+        ></div>
+        <p id="outUserName"></p>
       </div>
     )
     };
