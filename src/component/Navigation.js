@@ -26,15 +26,6 @@ export default function Navigation() {
       <Menu>
         <Link className="nav-link" to="/profile">Profile</Link>
         </Menu>
-
-      <Menu>
-        <Link className="nav-link" to="/login">Login</Link>
-        </Menu>
-
-      <Menu>
-        <Link className="nav-link" to="/signup">SignUp</Link>
-        </Menu>
-
 </Nav>
     )
 }
