@@ -1,11 +1,34 @@
-import { getAuth } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import Navigation from "../component/Navigation";
 import { useNavigate } from "react-router-dom";
+import { ModalBackground, ModalContainer } from "../component/TodoList";
+import { useState } from "react";
 
 export default function Profile() {
 const auth = getAuth();
 const user = auth.currentUser;
 const navigate = useNavigate();
+const [isModalOpen, setIsModalOpen] = useState(false);
+
+const onSignOut = async () => {
+    try {
+      const auth = getAuth();
+      await signOut(auth);
+      alert("로그아웃 되었습니다.")
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+const onClick = () => {
+    setIsModalOpen(true);
+}
+
+const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
 
 let displayName, email, photoURL, emailVerified, uid;
 if (user !== null) {
@@ -37,6 +60,23 @@ function Userinfo() {
         <Navigation/>
         <h1>프로필입니다.</h1>
         <Userinfo/>
+        <button onClick={onClick}>Logout</button>
+    
+
+
+
+
+
+
+        {isModalOpen && (
+        <ModalBackground>
+          <ModalContainer>
+            <p>로그아웃 하시겠습니까?</p>
+            <button onClick={onSignOut}>확인</button>
+            <button onClick={handleCancel}>취소</button>
+          </ModalContainer>
+        </ModalBackground>
+      )}
         </div>
     )
 

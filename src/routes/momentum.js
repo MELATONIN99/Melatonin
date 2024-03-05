@@ -49,7 +49,7 @@ export default function Momentum() {
         const fetchData = async () => {
     try {
         if( user == null ){
-            console.log(user)
+            navigate("/");
     }   else if ( user !== null ) {
           setDisplayName(user.displayName);
         }
