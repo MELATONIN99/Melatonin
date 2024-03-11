@@ -88,7 +88,7 @@ const TodoList = (props) => {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [todoState, setTodo] = useState("");
-
+  const [completedItems, setCompletedItems] = useState([]);
   
   const handleConfirm = async(itemId) => {
     try {
@@ -145,13 +145,26 @@ const TodoList = (props) => {
     console.error("error:handleEdit", error)
   }};
 
-
+  const onChecked = (itemId) => {
+    setCompletedItems((prevCompleted) => {
+      if (prevCompleted.includes(itemId)) {
+        return prevCompleted.filter((id) => id !== itemId);
+      } else {
+        return [...prevCompleted, itemId];
+      }
+    });
+  };
   return (
     <TodoListWrapper >
       {todoList.map((item) => (
         <TodosWrapper key={item.id}>
         <Todos>
-          {item.todo}
+        <input 
+        type="checkbox" 
+        onChange={() => onChecked(item.id)}
+        checked={completedItems.includes(item.id)}
+        />
+          <span className={completedItems.includes(item.id) ? "completed" : ""}>{item.todo}</span>
           </Todos>
           <TodoBtnWrapper>
           <ForTodoBtn onClick={() => editBtn(item.id)}>
