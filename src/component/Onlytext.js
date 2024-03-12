@@ -18,7 +18,8 @@ export default function OnlyText() {
               const text = displayName;
               const response = await fetch(`http://localhost:8080/art/${text}`);
               const data = await response.text();
-              console.log(data);
+              const textWithoutPreTags = data.replace(/<\/?pre>/g, '');
+              console.log( textWithoutPreTags );
               document.getElementById('outUserName').innerHTML = data;
             }
           }

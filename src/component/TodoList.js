@@ -28,7 +28,10 @@ background-color: rgba(69, 69, 69, 0.6);
 `
 
 const Todos = styled.div`
-padding-left: 10px;
+padding-left: 5px;
+`
+const TodoSpan = styled.span`
+padding-left: 5px ;
 `
 const TodosWrapper = styled.div`
 display: flex;
@@ -164,7 +167,7 @@ const TodoList = (props) => {
         onChange={() => onChecked(item.id)}
         checked={completedItems.includes(item.id)}
         />
-          <span className={completedItems.includes(item.id) ? "completed" : ""}>{item.todo}</span>
+          <TodoSpan className={completedItems.includes(item.id) ? "completed" : ""}>{item.todo}</TodoSpan>
           </Todos>
           <TodoBtnWrapper>
           <ForTodoBtn onClick={() => editBtn(item.id)}>

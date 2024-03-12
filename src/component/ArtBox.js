@@ -17,8 +17,9 @@ export default function ArtBox() {
         fetch(`http://localhost:8080/art/${text}`)
         .then((response) => response.text())
         .then((data) => {
-          console.log(data);
-          document.getElementById('outtext').innerHTML = data;
+              const textWithoutPreTags = data.replace(/<\/?pre>/g, '');
+              console.log( textWithoutPreTags );
+              document.getElementById('outtext').innerHTML = data;
         });
   
       };
