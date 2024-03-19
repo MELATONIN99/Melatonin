@@ -7,19 +7,46 @@ import styled from "styled-components";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../firebase/firebase";
 
+const Btn = styled.button`
+  background-color: #BE9FE1;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #dedede;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  height: auto;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 6px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 
-
-
-
+  &:hover,
+  &:focus {
+    background-color: #C9B6E4;
+  }
+`;
 const AvatarWrapper = styled.div`
 display: flex;
   align-items: center;
   flex-direction: column;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 5%;
   justify-content: center;
 `
 const AvatarUpload = styled.label`
+z-index: 1;
   width: 100px;
   overflow: hidden;
   height: 100px;
@@ -43,19 +70,17 @@ display: none;
 
 
 
-
-
-
 const UserinfoBackground = styled.div`
+position: relative;
+z-index: 0;
+top: -50px;
 display: flex;
   align-items: center;
   justify-content: center;
   background-color: #343434;
-  max-width: 400px; /* 최대 너비 설정 */
-  max-height: 350px;
+  max-width: 400px;
+  max-height: 500px;
   width: 300px;
-  margin: 2% auto; /* 수평 가운데 정렬을 위해 margin-left와 margin-right를 auto로 설정 */
-  padding: 2%;
   height: 100vh;
 `
 
@@ -65,10 +90,10 @@ flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #3c3c3c;
-  max-width: 400px; /* 최대 너비 설정 */
+  max-width: 400px;
   max-height: 380px;
   width: 300px;
-  margin: 5% auto; /* 수평 가운데 정렬을 위해 margin-left와 margin-right를 auto로 설정 */
+  margin: 5% auto;
   padding: 5%;
   height: auto;
 `
@@ -164,13 +189,13 @@ function Userinfo() {
     return(
       <UserinfoBackground>
             <UserinfoWrapper>
-              <p>이름: {displayName}</p> 
-              <button onClick={onNameChange}>이름변경</button>
-              <p>Email: {email}</p>
-              <p>Email 인증 여부: {emailVerified ? '인증됨' : '인증 안됨'}</p>
-              <button onClick={onSendEmail}>이메일 전송</button>
+              <p>닉네임: {displayName}</p> 
+              <Btn onClick={onNameChange}>닉네임 변경</Btn>
+              <p>이메일: {email}</p>
+              <p>이메일 인증 여부: {emailVerified ? '인증됨' : '인증 안됨'}</p>
+              <Btn onClick={onSendEmail}>이메일 전송</Btn>
               <br/>
-              <button onClick={onLogout}>Logout</button>
+              <Btn onClick={onLogout}>로그아웃</Btn>
             </UserinfoWrapper>
       </UserinfoBackground>
           );
