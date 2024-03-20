@@ -95,7 +95,7 @@ flex-direction: column;
   width: 300px;
   margin: 5% auto;
   padding: 5%;
-  height: auto;
+  height: 70%;
 `
 
 export default function Profile() {
