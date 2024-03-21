@@ -14,7 +14,9 @@
     #454545
     흰색
     #dedede
-
+    
+    라벤더 색상
+    #E6E6FA
 */
 
 body{
@@ -137,18 +139,17 @@ input:-webkit-autofill {
 
 
 
-.Section1 {
-    background : #2B2B2B;
+/* .Section1 {
+   
 }
-
 .Section2 {
-    background-color: #343434;
+    
 }
 
 .Section3 {
-    background-color: #3c3c3c;
+    
 }
 
 .Section4 {
-    background-color: #454545;
-}
+    
+} */
