@@ -42,7 +42,6 @@ display: flex;
   align-items: center;
   flex-direction: column;
   width: 100%;
-  margin-top: 5%;
   justify-content: center;
 `
 const AvatarUpload = styled.label`
@@ -115,7 +114,7 @@ const onSignOut = async () => {
       const auth = getAuth();
       await signOut(auth);
       alert("로그아웃 되었습니다.")
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.log(error);
     }

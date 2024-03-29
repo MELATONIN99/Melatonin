@@ -27,7 +27,7 @@ body{
     background-color: #2B2B2B;
     color: #dedede;
 };
-
+a{ color: dedede; }
 a:link { color: #dedede; }
 a:visited { color: #dedede; }
 a:hover { color:#BE9FE1; }

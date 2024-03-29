@@ -6,7 +6,7 @@ display: flex;
 flex-direction: row;
 align-items: center;
 padding-left: 10px;
-padding-top: 10px;
+height: 100px;
 `;
 export const MainLogo = styled.div`
 display: flex;
