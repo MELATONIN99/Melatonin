@@ -14,7 +14,7 @@ export default function Navigation() {
     if(user === null){
         navigate("/login")
     }
-  },{})
+  },[])
 return(
 
 <Nav>
