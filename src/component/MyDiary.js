@@ -18,7 +18,7 @@ border: 0px;
 margin-bottom: 2px;
 background-color: #dedede;
 `
-const DiaryText = styled.input`
+const DiaryText = styled.textarea`
 width: 100%;
 height: 100px;
 padding: 0px;
@@ -138,7 +138,7 @@ export default function MyDiary() {
       <DiaryForm onSubmit={onSubmit} > 
           <DiaryTitle
           required
-          rows={5}
+          rows={1}
           maxLength={30}
           onChange={onChangeTitle}
           value={title} 

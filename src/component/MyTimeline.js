@@ -25,7 +25,7 @@ export default function MyTimeline() {
                 limit(25),
             );
 
-            const unsubscribe = onSnapshot(diaryQuery, (snapshot) => {
+            const unsubscribe = await onSnapshot(diaryQuery, (snapshot) => {
                 const fetchedDiarys = snapshot.docs.map((doc) => {
                     const { title, diary, createAt, userId, username, photo } = doc.data();
                     return {

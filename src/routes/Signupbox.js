@@ -30,6 +30,7 @@ export default function SignupBox() {
                 const user = userCredential.user;
                 updateProfile(auth.currentUser, {
                     displayName:displayName,
+                    photoURL: null
                 })
                     alert("가입완료");
                     navigate("/login");
