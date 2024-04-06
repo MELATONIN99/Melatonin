@@ -68,16 +68,20 @@ export default function AnotherDiary(props) {
 
   const user = auth.currentUser;
   useEffect(() => {
-  if( user !== null ){
+  if( user.photoURL === null ) {
+    setIsAvatar(null);
+  } else {
   const locationRef = ref(storage, `avatars/${userId}`);
   getDownloadURL(locationRef)
   .then(avatar => {
-  setIsAvatar(avatar)
+    setIsAvatar(avatar);
   })
   .catch(error => {
-    console.error("Error");
+    if (error.code === 'storage/object-not-found') {
+      console.log(error, "error")
+    } 
   });
-  }
+}
 },[user]);
 
   return (
