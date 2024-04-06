@@ -135,7 +135,6 @@ const onAcceptChange = (event) => {
   updateProfile(auth.currentUser, {
     displayName:NewDisplayName,
   }).then(() => {
-    console.log("update complete!");
     setIsNameChange(false);
   }).catch((error) => {
     console.log(error,"error!");

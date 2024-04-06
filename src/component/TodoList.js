@@ -110,7 +110,6 @@ const TodoList = (props) => {
 
   const deleteBtn = (itemId) => {
     setSelectedItemId(itemId);
-    console.log(itemId);
     setIsModalOpen(true);
   };
 

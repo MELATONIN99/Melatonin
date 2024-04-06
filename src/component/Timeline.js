@@ -37,7 +37,6 @@ export default function Timeline() {
                     };
                 });
                 setDiarys(fetchedDiarys);
-                console.log(fetchedDiarys)
             });
 
             return () => unsubscribe();
