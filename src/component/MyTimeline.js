@@ -45,19 +45,19 @@ export default function MyTimeline() {
         };
 
         fetchDiary();
-    }, []);
+    }, [user]);
     return (
         <Wrapper>
             {diarys.map((diary) => (
                 <AnotherDiary 
-                title={diary.title}
-                diary={diary.diary}
-                createAt={diary.createAt}
-                userId={diary.userId}
-                username={diary.username}
-                photo={diary.photo}
-                id={diary.id}
-                
+                myTitle={diary.title}
+                myDiary={diary.diary}
+                myCreateAt={diary.createAt}
+                myUserId={diary.userId}
+                myUsername={diary.username}
+                myPhoto={diary.photo}
+                myId={diary.id}
+                myDiarys={[diary]}
                 key={diary.id} {...diary} />
             ))}
         </Wrapper>

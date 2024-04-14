@@ -13,16 +13,14 @@ const Wrapper = styled.div`
 `;
 
 export default function Timeline() {
-    const [diarys, setDiarys] = useState([]);
+    const [isdiarys, setIsDiarys] = useState([]);
 
-    useEffect(() => {
         const fetchDiary = async () => {
             const DiaryQuery = query(
                 collection(db, "diary"),
                 orderBy("createAt", "desc"),
                 limit(25),
             );
-
             const unsubscribe = onSnapshot(DiaryQuery, (snapshot) => {
                 const fetchedDiarys = snapshot.docs.map((doc) => {
                     const { title, diary, createAt, userId, username, photo } = doc.data();
@@ -36,27 +34,30 @@ export default function Timeline() {
                         id: doc.id,
                     };
                 });
-                setDiarys(fetchedDiarys);
+                setIsDiarys(fetchedDiarys);
             });
 
             return () => unsubscribe();
         };
-
+        useEffect(() => {
         fetchDiary();
+        
     }, []);
+    
     return (
         <Wrapper>
-            {diarys.map((diary) => (
+            {isdiarys.map((item) => (
                 <AnotherDiary 
-                title={diary.title}
-                diary={diary.diary}
-                createAt={diary.createAt}
-                userId={diary.userId}
-                username={diary.username}
-                photo={diary.photo}
-                id={diary.id}
-                
-                key={diary.id} {...diary} />
+                diarys={[item]}
+                title={item.title}
+                diary={item.diary}
+                createAt={item.createAt}
+                userId={item.userId}
+                username={item.username}
+                photo={item.photo}
+                id={item.id}
+                key={item.id} {...item}
+                />
             ))}
         </Wrapper>
     );
