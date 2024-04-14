@@ -5,6 +5,7 @@ import SignupBox from "../routes/SignupBox";
 import Profile from "../routes/Profile";
 import Momentum from "../routes/Momentum";
 import Diary from "../routes/Diary";
+import PasswordReset from "../routes/PasswordReset";
 
 const Router = () => {
     return (
@@ -16,6 +17,7 @@ const Router = () => {
                 <Route path="/diary" element={<Diary/>}/>
                 <Route path="/login" element={<LoginBox/>}/>
                 <Route path="/signup" element={<SignupBox/>}/>
+                <Route path="/passwordreset" element={<PasswordReset/>}/>
             </Routes>
         </BrowserRouter>
     )

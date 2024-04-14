@@ -1,8 +1,9 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+
 import { auth } from "../firebase/firebase.js";
 import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
 import styled from "styled-components";
+import { sendPasswordResetEmail } from "firebase/auth";
 const LogoimgWrapper = styled.div`
 display: flex;
   align-items: center;
@@ -14,16 +15,15 @@ display: flex;
 `
 const logoimg = "MELATONINLOGO.png";
 
-export default function LoginBox() {
+export default function PasswordReset() {
   const navigate = useNavigate();
 
   const onClcik = (event) => {
   event.preventDefault();
   const email = document.getElementById('email').value
-  const password = document.getElementById('password').value
-    signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-    const user = userCredential.user;
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+    alert("이메일 전송 완료");
     navigate("/");
   })
     .catch((error) => {
@@ -37,7 +37,7 @@ export default function LoginBox() {
   function getErrorMessage(errorCode) {
     switch (errorCode) {
       default:
-        return "이메일 혹은 비밀번호가 일치하지 않습니다.";
+        return "이메일 전송 실패";
     };
   };
 };
@@ -47,15 +47,14 @@ export default function LoginBox() {
 <LogoimgWrapper>
   <img src={logoimg} alt="logo" />
   </LogoimgWrapper>
-  <h2>Login</h2>
+  <h2>ResetPassword</h2>
         <form id="login-form">
             <input type="text" name="userName" placeholder="Email" id="email"/>
-            <input type="password" name="userPassword" placeholder="Password" id="password"/>
-            <button type="submit" value="Login" className="lobbybtn" onClick={onClcik}>Login</button>
+            <button type="submit" value="Login" className="lobbybtn" onClick={onClcik}>Send Email</button>
             <div className="link-to-account">Don't have an account?
             <br/><Link to="/signup">Sing Up</Link></div>
-            <div className="link-to-account">Forgotten your password?
-            <br/><Link to="/passwordreset">Reset</Link></div>
+            <div className="link-to-account">Already have an account?
+            <br/><Link to="/login">Sign in</Link></div>
         </form>
 </div>
 );  

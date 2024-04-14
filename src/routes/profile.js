@@ -1,4 +1,4 @@
-import { getAuth, sendEmailVerification, signOut, updateProfile } from "firebase/auth";
+import { getAuth, sendEmailVerification, sendPasswordResetEmail, signOut, updateProfile } from "firebase/auth";
 import Navigation from "../component/Navigation";
 import { useNavigate } from "react-router-dom";
 import { ModalBackground, ModalContainer } from "../component/TodoList";
@@ -153,6 +153,18 @@ const onSendEmail = () => {
   });
 }
 
+const onResetPassword = () => {
+  sendPasswordResetEmail(auth, email)
+  .then(() => {
+    alert("이메일 전송 완료");
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode,errorMessage);
+    // ..
+  });
+}
 
 //아바타 변경 기능
 const onAvatarChange = async (e) => {
@@ -192,6 +204,8 @@ function Userinfo() {
               <p>이메일: {email}</p>
               <p>이메일 인증 여부: {emailVerified ? '인증됨' : '인증 안됨'}</p>
               <Btn onClick={onSendEmail}>이메일 전송</Btn>
+              <br/>
+              <Btn onClick={onResetPassword}>비밀번호 초기화</Btn>
               <br/>
               <Btn onClick={onLogout}>로그아웃</Btn>
             </UserinfoWrapper>
