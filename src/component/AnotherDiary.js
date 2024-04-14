@@ -82,7 +82,6 @@ export default function AnotherDiary(props) {
   } else {
   const locationRef = ref(storage, `avatars/${userId}`);
   if(locationRef !== null){
-    console.log(locationRef)
   getDownloadURL(locationRef)
   .then(avatar => {
     setIsAvatar(avatar);
@@ -97,7 +96,6 @@ export default function AnotherDiary(props) {
 // 글 내용 Edit
 const editBtn = (itemId) => {
   setSelectedItemId(itemId);
-  console.log(itemId);
 let selectedItem = null;
   if (myDiarys && myDiarys.length > 0) {
     selectedItem = myDiarys.find((item) => item.id === selectedItemId);
