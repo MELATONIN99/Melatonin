@@ -2,8 +2,58 @@ import styled from "styled-components";
 import { auth, db, storage } from "../firebase/firebase";
 import { getDownloadURL, ref } from "firebase/storage";
 import { useEffect, useState } from "react";
-import { ModalBackground, ModalContainer } from "./TodoList";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { DiarySubmitBtn } from "./MyDiary";
+
+const ModalBackground = styled.div`
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ModalContainer = styled.div`
+  width: 50vw;
+  height: auto;
+  background: #454545;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+`;
+const EditDiaryForm = styled.form`
+width: 100%;
+`;
+const EditDiaryTitle = styled.input`
+position: static;
+width: 100%;
+height: 30px;
+border: 0px;
+border-radius: 20px 20px 0px 0px;
+padding: 10px 15px;
+padding-left: 15px;
+font-weight: 600;
+box-sizing: border-box;
+margin-bottom: 2px;
+background-color: #dedede;
+color: #2B2B2B;
+`;
+const EditDiaryText = styled.textarea`
+width: 100%;
+height: 150px;
+border: 0px;
+border-radius: 0px 0px 20px 20px;
+padding: 10px 15px;
+box-sizing: border-box;
+background-color: #dedede;
+color: #2B2B2B;
+word-wrap: break-word;
+`;
 
 const UserDisplay = styled.div`
 display: flex;
@@ -11,17 +61,17 @@ align-items: center;
 padding-bottom: 5px;
 border-bottom: 1px solid #454545;
 
-`
+`;
 const AvatarWrapper = styled.div`
 width: 35px;
 height: 35px;
 border-radius: 70%;
 overflow: hidden;
 background-color: #BE9FE1;
-`
+`;
 const AvatarImg = styled.img`
 width: 100%;
-`
+`;
 
 const Wrapper = styled.div`
   position: static;
@@ -30,13 +80,16 @@ const Wrapper = styled.div`
   padding: 20px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 15px;
+  word-wrap: break-word;
+  background-color: #343434;
 `;
 
 const Column = styled.div`
   &:last-child {
     place-self: end;
   }
-`;
+  word-wrap: break-word;
+  `;
 
 const Photo = styled.img`
   width: 120px;
@@ -57,14 +110,39 @@ const PayloadTitle = styled.h3`
   align-items: center;
   margin: 10px 0px;
   font-size: 14px;
+  word-wrap: break-word;
 `;
 
 const Payload = styled.p`
   margin: 10px 0px;
   font-size: 12px;
+  word-wrap: break-word;
+  max-width: 500px;
 `;
 
+const BtnWrapper = styled.div`
+display: flex;
+`;
 
+export const MiniBtn = styled.button`
+  margin-right: 5px;
+  color: #BE9FE1;
+  background-color: #2B2B2B;
+  text-align: center;
+  border-radius: 20px;
+  border: 1px solid #BE9FE1;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 50px;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  &:hover,
+  &:focus {
+    background-color: #C9B6E4;
+    color: #454545;
+  }
+`;
 export default function AnotherDiary(props) {
   const { username, title, diary, userId, photo, id, fetchDiary, diarys} = props;
   const { myDiarys, myTitle, myDiary } = props;
@@ -166,8 +244,10 @@ const delCancel = () => {
               </UserDisplay>
               <PayloadTitle>{title}</PayloadTitle>
               <Payload>{diary}</Payload>
-              {user?.uid === userId ? <button onClick={() => editBtn(id)}>edit</button> : null}
-              {user?.uid === userId ? <button onClick={() => deleteBtn(id)}>delete</button> : null}
+              <BtnWrapper>
+              {user?.uid === userId ? <MiniBtn onClick={() => editBtn(id)}>edit</MiniBtn> : null}
+              {user?.uid === userId ? <MiniBtn onClick={() => deleteBtn(id)}>delete</MiniBtn> : null}
+              </BtnWrapper>
           </Column>
           <Column>
               {photo ? <Photo src={photo} /> : null}
@@ -177,31 +257,31 @@ const delCancel = () => {
           {editModalOpen && (
       <ModalBackground>
         <ModalContainer>
-          <div>
             {(diarys || myDiarys).map((item) => (
               selectedItemId === item.id && (
-                <div key={item.id}>
-                  <input
+                <EditDiaryForm key={item.id}>
+                  <EditDiaryTitle
                   required
                   value={isTitle}
-                  maxLength={10}
+                  maxLength={30}
                   onChange={onEditTitleChange}
                   >
-                  </input>
-                  <input 
+                  </EditDiaryTitle>
+                  <EditDiaryText
                   required
                   value={isDiary}
-                  maxLength={20}
+                  maxLength={180}
                   onChange={onEditDiaryChange}
                   >
-                </input>
-                </div>
+                </EditDiaryText>
+                </EditDiaryForm>
                 
               )
             ))}
-            <button onClick={handleEdit}>확인</button>
-            <button onClick={editHandleCancel}>취소</button>
-          </div>
+            <BtnWrapper>
+            <DiarySubmitBtn onClick={handleEdit}>확인</DiarySubmitBtn>
+            <DiarySubmitBtn onClick={editHandleCancel}>취소</DiarySubmitBtn>
+            </BtnWrapper>
         </ModalContainer>
       </ModalBackground>
     )}
@@ -210,14 +290,11 @@ const delCancel = () => {
         <ModalBackground>
           <ModalContainer>
             <p>정말로 삭제하시겠습니까?</p>
-            <button onClick={delConfirm}>확인</button>
-            <button onClick={delCancel}>취소</button>
+            <DiarySubmitBtn onClick={delConfirm}>확인</DiarySubmitBtn>
+            <DiarySubmitBtn onClick={delCancel}>취소</DiarySubmitBtn>
           </ModalContainer>
         </ModalBackground>
       )}
       </Wrapper>
-  
-
 );
-  
 }

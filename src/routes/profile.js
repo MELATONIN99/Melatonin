@@ -8,33 +8,22 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../firebase/firebase";
 
 const Btn = styled.button`
-  background-color: #BE9FE1;
-  border-radius: 8px;
-  border-style: none;
-  box-sizing: border-box;
-  color: #dedede;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 500;
-  height: auto;
-  line-height: 20px;
-  list-style: none;
-  margin: 0;
-  outline: none;
-  padding: 6px;
-  position: relative;
+margin-right: 5px;
+  color: #BE9FE1;
+  background-color: #2B2B2B;
   text-align: center;
-  text-decoration: none;
-  transition: color 100ms;
-  vertical-align: baseline;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-
+  border-radius: 20px;
+  border: 1px solid #BE9FE1;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: auto;
+  display: block;
+  font-family: 'Roboto', sans-serif;
   &:hover,
   &:focus {
     background-color: #C9B6E4;
+    color: #454545;
   }
 `;
 const AvatarWrapper = styled.div`

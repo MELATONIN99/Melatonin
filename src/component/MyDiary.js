@@ -6,40 +6,40 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { useNavigate } from "react-router-dom"
 import MyTimeline from "./MyTimeline"
 
-const DiaryForm = styled.form`
+export const DiaryForm = styled.form`
 width: 50vw;
 max-width: 600px;
 `
-
-const DiaryWrapper = styled.div`
+export const DiaryWrapper = styled.div`
 width: 100%;
 display: block;
-
 `
-const DiaryTitle = styled.input`
+export const DiaryTitle = styled.input`
+position: static;
 width: 100%;
 height: 30px;
 border: 0px;
 border-radius: 20px 20px 0px 0px;
-padding: 0px 5px;
+padding: 10px 15px;
+padding-left: 15px;
 font-weight: 600;
 box-sizing: border-box;
 margin-bottom: 2px;
 background-color: #dedede;
 color: #2B2B2B;
 `
-const DiaryText = styled.textarea`
+export const DiaryText = styled.textarea`
 width: 100%;
 height: 50%;
 border: 0px;
 border-radius: 0px 0px 20px 20px;
-padding: 10px 5px;
+padding: 10px 15px;
 box-sizing: border-box;
 background-color: #dedede;
 color: #2B2B2B;
 `
 
-const AttachFileButton = styled.label`
+export const AttachFileButton = styled.label`
 padding: 10px 0px;
 margin: 10px 0px;
   color: #BE9FE1;
@@ -59,11 +59,11 @@ margin: 10px 0px;
 `;
 
 
-const DiaryImgInput = styled.input`
+export const DiaryImgInput = styled.input`
 display: none;
 `
 
-const DiarySubmitBtn = styled.button`
+export const DiarySubmitBtn = styled.button`
 padding: 10px 0px;
 margin: 10px 0px;
   color: #BE9FE1;
