@@ -134,7 +134,7 @@ export const MiniBtn = styled.button`
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  width: 50px;
+  width: auto;
   display: block;
   font-family: 'Roboto', sans-serif;
   &:hover,
@@ -195,6 +195,8 @@ const onEditDiaryChange = (e) => {
   setIsDiary(e.target.value);  
 };
 const handleEdit = async(e) => {
+  e.preventDefault();
+  if(!user || isDiary === "" || isDiary.length >180 || isTitle === "" || isTitle.length>30 ) return;
   try{
   const DiaryDocRef = doc(db, "diary", selectedItemId);
   const data = {
@@ -262,6 +264,7 @@ const delCancel = () => {
                 <EditDiaryForm key={item.id}>
                   <EditDiaryTitle
                   required
+                  rows={1}
                   value={isTitle}
                   maxLength={30}
                   onChange={onEditTitleChange}
@@ -269,6 +272,7 @@ const delCancel = () => {
                   </EditDiaryTitle>
                   <EditDiaryText
                   required
+                  rows={5}
                   value={isDiary}
                   maxLength={180}
                   onChange={onEditDiaryChange}

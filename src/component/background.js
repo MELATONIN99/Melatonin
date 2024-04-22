@@ -17,7 +17,7 @@ export default function Background() {
         "../img/2.jpg",
         "../img/3.jpg",
         "../img/4.jpg",
-    ]   
+    ];
     const chosenImage = images[Math.floor(Math.random() * images.length)];
 
 
