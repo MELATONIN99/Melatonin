@@ -1,5 +1,8 @@
 import {SectionsContainer, Section} from 'react-fullpage';
 import Section1 from "../component/Section1";
+import Section2 from '../component/Section2';
+import Section3 from '../component/Section3';
+import Section4 from '../component/Section4';
 
 let options = {
     activeClass:          'active', // the class that is appended to the sections links
@@ -26,15 +29,15 @@ export default function HomeBox() {
             </Section>
 
             <Section className="Section2">
-                Page 2
+                <Section2 />
             </Section>
 
             <Section className="Section3">
-                Page 3
+                <Section3 />
             </Section>
-
+                
             <Section className="Section4">
-                Page 4
+                <Section4 />
             </Section>
         </SectionsContainer>
         </div>
