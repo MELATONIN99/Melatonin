@@ -46,4 +46,4 @@ export default function Section1() {
       </BackContainer>
     </SectionWrapper>
   );
-}
+};

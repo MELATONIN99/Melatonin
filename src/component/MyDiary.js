@@ -18,20 +18,22 @@ export const DiaryTitle = styled.input`
 position: static;
 width: 100%;
 height: 30px;
-border: 0px;
 border-radius: 20px 20px 0px 0px;
+border: solid 2px;
+border-color: #BE9FE1;
 padding: 10px 15px;
 padding-left: 15px;
 font-weight: 600;
 box-sizing: border-box;
 margin-bottom: 2px;
-background-color: #dedede;
+background-color:#dedede;
 color: #2B2B2B;
 `
 export const DiaryText = styled.textarea`
 width: 100%;
 height: 50%;
-border: 0px;
+border: solid 2px;
+border-color: #BE9FE1;
 border-radius: 0px 0px 20px 20px;
 padding: 10px 15px;
 box-sizing: border-box;
